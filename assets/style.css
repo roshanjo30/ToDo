@@ -75,3 +75,8 @@ li:hover {
 .remove-button:hover{
     color: #ff7b00;
 }
+
+button:hover{
+    background-color:  #e5adade0;
+    cursor: pointer
+}
