@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #fce2c4;
+    background-color: #e5adade0;
     padding: 40px;
 }
 
@@ -19,13 +19,24 @@ input {
     padding: 9px;
 }
 
+.mainbar{
+    display: flex;
+    justify-content: center;
+    
+}
 .title{
     text-align: center;
+    background-color: rgb(253, 253, 253);
+    width: 400px;
+    border-radius: 30px;
 }
 
 button {
     margin-top: 4px;
     padding: 1px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
 }
 #task{
     margin-top: 10px;
@@ -37,6 +48,7 @@ button {
 
 #todoList li {
     margin-bottom: 10px;
+    
 }
 
 .remove-button {
@@ -52,7 +64,7 @@ button {
 }
 
 .completed {
-    text-decoration: line-through;
+    text-decoration: line-through 2px;
     color: grey;
 }
 
@@ -61,5 +73,5 @@ li:hover {
 }
 
 .remove-button:hover{
-    color: #ff8800;
+    color: #ff7b00;
 }

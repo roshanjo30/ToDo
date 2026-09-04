@@ -2,7 +2,9 @@ class TodoPlugin {
     constructor(selector){
         this.container = document.querySelector(selector);
         this.container.innerHTML = `
+            <div class="mainbar">
             <h1 class="title">ToDo App</h1>
+            </div>
 
                 <div class="input">
                     <button id="addbutton">Add Task</button>
