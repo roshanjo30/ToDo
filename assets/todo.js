@@ -1,16 +1,35 @@
 class TodoPlugin {
-    constructor(){
-        this.input = document.querySelector("#task");
-        this.addButton = document.querySelector("#addbutton");
-        this.todoList = document.querySelector("#todoList");
+    constructor(selector){
+        this.container = document.querySelector(selector);
+        this.container.innerHTML = `
+            <h1 class="title">ToDo App</h1>
+
+                <div class="input">
+                    <button id="addbutton">Add Task</button>
+                </div>
+
+                <input
+                    type="text"
+                    id="task"
+                    placeholder="Task Name"
+                    hidden
+                >
+
+                <h3 class="main">ToDo List</h3>
+
+                <ul id="todoList"></ul>
+
+        `;
         this.loadTodos();
         this.setupEvents();
     }
 
     saveTodos() {
         const todos = [];
+
+        const todoList = this.container.querySelector("#todoList");
     
-        this.todoList.querySelectorAll("li").forEach((li) => {
+        todoList.querySelectorAll("li").forEach((li) => {
             const taskText = li.querySelector("span");
     
             
@@ -24,6 +43,8 @@ class TodoPlugin {
     }
 
     loadTodos() {
+        const todoList = this.container.querySelector("#todoList");
+
         const todos = JSON.parse(localStorage.getItem("todos")) || [];
     
         todos.forEach((todo) => {
@@ -54,16 +75,22 @@ class TodoPlugin {
             li.appendChild(taskText);
             li.appendChild(removeButton);
     
-            this.todoList.appendChild(li);
+            todoList.appendChild(li);
         });
     }
 
     setupEvents(){
-        this.addButton.addEventListener("click", () => {
+        const input = this.container.querySelector("#task");
+    
+        const addButton = this.container.querySelector("#addbutton");
+
+        const todoList = this.container.querySelector("#todoList");
+
+        addButton.addEventListener("click", () => {
             
-            this.input.hidden = false;
-            this.input.focus();
-            const todoText = this.input.value.trim();
+            input.hidden = false;
+            input.focus();
+            const todoText = input.value.trim();
         
             if (!todoText) {
                 return;
@@ -91,17 +118,17 @@ class TodoPlugin {
             li.appendChild(taskText);
             li.appendChild(removeButton);
             
-            this.todoList.appendChild(li);
+            todoList.appendChild(li);
         
-            this.input.value = "";
+            input.value = "";
             this.saveTodos();
         
-            this.input.hidden = true;
+            input.hidden = true;
         });
 
-        this.input.addEventListener("keydown", (event) => {
+        input.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
-                this.addButton.click();
+                addButton.click();
             }
         });
         
@@ -110,7 +137,7 @@ class TodoPlugin {
 }
 
 
-const todo = new TodoPlugin();
+const todo = new TodoPlugin("#todo");
 
 
 
